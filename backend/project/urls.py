@@ -22,5 +22,5 @@ urlpatterns = [
     # include a sub urls made in an app
     # path http://127.0.0.1:8000/api/
     path('api/', include('api.urls')),
-
+	path('api/products/', include('products.urls')),
 ]

@@ -18,7 +18,12 @@ import requests
 # print(get_response.json())
 
 # params = query params ../api/?abc=123
-endpoint = "http://localhost:8000/api/random_object/"
-get_response = requests.get(endpoint)
+# endpoint = "http://localhost:8000/api/random_object_rest/"
+# get_response = requests.get(endpoint)
+# print(get_response.status_code)
+# print(get_response.json())
+
+endpoint = "http://localhost:8000/api/post_req/"
+get_response = requests.post(endpoint, json={"title": "heyyyy"})
 print(get_response.status_code)
 print(get_response.json())

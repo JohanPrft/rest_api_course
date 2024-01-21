@@ -5,6 +5,9 @@ JSON = JavaScript Object Notation
 Dictionaries = consists of a collection of key-value pairs. (said dict)
 *args = allows you to pass a varying number of positional arguments
 **kwargs = allows you to pass a varying number of keyword (or named) arguments
+Field = model class attribute that maps to a db column
+django REST framwork = serializers aand views
+QuerySet = a collection of objects from your database (often used with filters)
 
 00:01:54  Tools we are using
 
@@ -65,7 +68,7 @@ Create a django Model and respond on API with instance of the model
 Create a new app (he chose to separate based on use not on logic)
 https://docs.djangoproject.com/en/5.0/topics/db/models/
 
-create a new class heriting from models.Model
+create a new class inherit from models.Model
 
 create a db entry
 /!\ make a migration let the db know about the changes
@@ -84,17 +87,79 @@ we turn it into a python dict (to use it)
 we turn it into JSON (to send it)
 
 00:54:45  Django Model Instance to Dictionary
+JsonResponse() accept dict, HttpResponse a string
+HttpResponse content type by default is text/html
+Can be changed with headers, but the inside is still a dict
+Turn a dict into a JSON (json.dump) but doesnt work for everything
+model_to_dict
+
 01:00:41  Rest Framework View & Response
+decorator and Response class from rest
+Decorator help with permissions management
+
 01:04:27  Django Rest Framework Model Serializers
+@property decorator used to access a method as an attribute
+In Django models, the @property decorator is used to create a property that behaves
+like a field but is generated dynamically through a method. It's a Python built-in
+decorator that allows you to define a method but access it like an attribute,
+avoiding the need to call the method with parentheses. This can make your code
+cleaner and more readable.
+
+Create a forms and serializers files
+They very similar, forms are input for user in the website
+From forms.py to models.py
+Benefit of serializer: serialize data, clean data, make multiple
+
 01:14:45  Ingest Data with Django Rest Framework Views
+Serializer can ingest data and clean them
+HTTP Post method,
+Only way to create an instance from the serializer is to .save()
+Serializer (broad or small), will check the data match requirement of itself
+
+
 01:27:05  Django Rest Framework Generics RetrieveAPIView
+ different than the previous url
+class beased view can be intergrated in two manners:
+- in urls.py with wiews.SomethingAPIView.as_view()
+- in views.py somethingView = SomethingAPIView.as_view()
+
 01:35:54  Django Rest Framework CreateAPIView
+add context to a serializer, for example add the sender to the created object
+
 01:41:57  Django Rest Framework ListAPIView & ListCreateAPIView
+Combining views is really common (not usefull if need for different endpoints)
+
 01:44:36  Using Function Based Views For Create Retrieve or List
+Regroup List Detail and Create as one
+We can do all CRUD operation in one single view
+
 01:55:17  UpdateAPIView & DestroyAPIView
+Update and Destroy AIP View
+
 02:04:05  Mixins and a Generic API View
+function based view vs class based view
+we dont write check for http method we create function to handle them
+and we can use pre build views (included in mixin)!!
+
+
+The ProductMixinView class you mentioned is inheriting from generics.GenericAPIView,
+which is a base class provided by Django REST Framework that provides the core
+functionality for writing API views. By inheriting from generics.GenericAPIView,
+your ProductMixinView gains all the functionality required to create a RESTful API
+view, such as handling HTTP requests, rendering responses, and so on.
+
 02:16:33  Session Authentication & Permissions
-02:23:21  User & Group Permissions with DjangoModelPermissions 
+Create superuser:
+	python3 backend/manage.py createsuperuser
+
+02:23:21  User & Group Permissions with DjangoModelPermissions
+DjangoModelPermissions
+staff::rest_api_tuto
+we can parameter many perm in admin panel
+for users perm:
+	permission_classes = [permissions.DjangoModelPermissions]
+we need to declare them on every view ?
+create a custom model for view, they are already made for post put patch
 02:30:55  Custom Permissions
 02:45:46  Token Authentication
 02:59:45  Default Django Rest Framework Settings
