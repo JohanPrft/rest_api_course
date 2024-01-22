@@ -8,7 +8,7 @@ Dictionaries = consists of a collection of key-value pairs. (said dict)
 Field = model class attribute that maps to a db column
 django REST framwork = serializers aand views
 QuerySet = a collection of objects from your database (often used with filters)
-
+f-string = use var inside string with {}
 00:01:54  Tools we are using
 
 00:04:36  Setup Python Virtual Environment, Install Req, and Start Django
@@ -160,9 +160,20 @@ for users perm:
 	permission_classes = [permissions.DjangoModelPermissions]
 we need to declare them on every view ?
 create a custom model for view, they are already made for post put patch
+
 02:30:55  Custom Permissions
+c'est dur la un peu
+	permission_classes = [permissions.IsAdminUser, IsStaffEditorPermissions]
+perm order is important
+
 02:45:46  Token Authentication
+authenticate communication between client and backend
+no raw passwords passed in json
+
 02:59:45  Default Django Rest Framework Settings
+set defaults value to auth and perm 
+we dont import the module we declare a path
+
 03:07:39  Using Mixins for Permissions
 03:13:15  ViewSets & Routers
 03:25:51  URLs, Reverse, & Serializers

@@ -6,13 +6,20 @@ from django.shortcuts import get_object_or_404
 
 from .models import Product
 from .serializers import ProductSerializer
+from .permissions import IsStaffEditorPermissions
 
 class ProductListCreateAPIView(generics.ListCreateAPIView):
 	# if get method
 	queryset = Product.objects.all()
 	serializer_class = ProductSerializer
-	authentication_classes = [authentication.SessionAuthentication]
-	permission_classes = [permissions.DjangoModelPermissions]
+	authentication_classes = [
+		authentication.SessionAuthentication,
+		authentication.TokenAuthentication
+		]
+	permission_classes = [
+		permissions.IsAdminUser,
+		IsStaffEditorPermissions
+		]
 
 	# automaticly called
 	# if post method
@@ -23,7 +30,6 @@ class ProductListCreateAPIView(generics.ListCreateAPIView):
 		content = serializer.validated_data.get('content') or None
 		if content is None:
 			content = title
-
 		serializer.save(content=content)
 
 class ProductDetailAPIView(generics.RetrieveAPIView):

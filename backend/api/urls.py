@@ -1,6 +1,7 @@
 # New urls.py for this app
 
 from django.urls import path
+from rest_framework.authtoken.views import obtain_auth_token
 
 from .views import api_home
 from .views import echo
@@ -12,6 +13,7 @@ from .views import post_req
 
 
 urlpatterns = [
+    path('auth/', obtain_auth_token),
 	path('home/', api_home),
 	path('echo/', echo),
 	path('random_object/', random_object),

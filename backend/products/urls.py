@@ -2,6 +2,7 @@ from django.urls import path
 
 from . import views
 
+# /api/products/
 urlpatterns = [
 	path('', views.ProductListCreateAPIView.as_view()),
 	# int then lookup field as key arg
