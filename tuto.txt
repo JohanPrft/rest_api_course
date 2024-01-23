@@ -9,6 +9,10 @@ Field = model class attribute that maps to a db column
 django REST framwork = serializers aand views
 QuerySet = a collection of objects from your database (often used with filters)
 f-string = use var inside string with {}
+mixin = classes provide the actions that are used to provide the basic view behavior
+viewset = combine the logic for multiple related views into a class.
+routers= work with viewsets to automatically generate URL patterns.
+
 00:01:54  Tools we are using
 
 00:04:36  Setup Python Virtual Environment, Install Req, and Start Django
@@ -171,11 +175,19 @@ authenticate communication between client and backend
 no raw passwords passed in json
 
 02:59:45  Default Django Rest Framework Settings
-set defaults value to auth and perm 
+set defaults value to auth and perm
 we dont import the module we declare a path
+painfull to set restriction for every view
 
 03:07:39  Using Mixins for Permissions
+Create a perm mixin to reuse it in views
+
 03:13:15  ViewSets & Routers
+A viewset is a way to combine the logic for multiple related views into a single class.
+start with views and URLs. As your API grows in complexity if you find yourself
+repeating the same endpoint patterns over and over again, then look to viewsets
+and routers. Until then, keep things simple
+
 03:25:51  URLs, Reverse, & Serializers
 03:33:47  Model Serializer Create & Update Methods
 03:41:47  Custom Validation with Serializers
